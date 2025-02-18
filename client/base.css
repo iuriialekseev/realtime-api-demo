@@ -7,8 +7,8 @@ https://tailwindcss.com/docs/preflight
 @tailwind utilities;
 
 :root {
-  --color-base: #FFF;
-  --color-highlight: #4069F3;
+  --color-base: #fff;
+  --color-highlight: #4069f3;
 }
 
 html,

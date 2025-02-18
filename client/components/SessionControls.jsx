@@ -28,7 +28,11 @@ function SessionStopped({ startSession }) {
 function SessionActive({ stopSession }) {
   return (
     <div className="flex items-center justify-center w-full h-full gap-4">
-      <Button onClick={stopSession} className={"bg-red-600"} icon={<StopCircle height={16} />}>
+      <Button
+        onClick={stopSession}
+        className={"bg-red-600"}
+        icon={<StopCircle height={16} />}
+      >
         Disconnect
       </Button>
     </div>
@@ -45,8 +49,8 @@ export default function SessionControls({
       {isSessionActive ? (
         <SessionActive stopSession={stopSession} />
       ) : (
-          <SessionStopped startSession={startSession} />
-        )}
+        <SessionStopped startSession={startSession} />
+      )}
     </div>
   );
 }

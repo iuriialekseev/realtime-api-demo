@@ -8,7 +8,7 @@ export default function App() {
   const [events, setEvents] = useState([]);
   const [dataChannel, setDataChannel] = useState(null);
   const [systemPrompt, setSystemPrompt] = useState(
-    localStorage.getItem("systemPrompt") || ""
+    localStorage.getItem("systemPrompt") || "",
   );
   const [apiKey, setApiKey] = useState(localStorage.getItem("apiKey") || "");
   const [voice, setVoice] = useState(localStorage.getItem("voice") || "ash");
@@ -129,7 +129,10 @@ export default function App() {
       dataChannel.send(JSON.stringify(message));
       setEvents((prev) => [message, ...prev]);
     } else {
-      console.error("Failed to send message - no data channel available", message);
+      console.error(
+        "Failed to send message - no data channel available",
+        message,
+      );
     }
   }
 
@@ -203,5 +206,4 @@ export default function App() {
       </main>
     </>
   );
-
 }

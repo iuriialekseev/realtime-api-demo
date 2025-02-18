@@ -6,7 +6,7 @@ export default function EventLog({ events }) {
     .filter(
       (e) =>
         e.type === "conversation.item.input_audio_transcription.completed" ||
-        e.type === "response.audio_transcript.done"
+        e.type === "response.audio_transcript.done",
     )
     .map((e) => {
       const role =
