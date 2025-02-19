@@ -106,7 +106,7 @@ export default function ToolPanel({
           API Key
         </label>
         <input
-          type="text"
+          type="password"
           value={apiKey}
           onChange={(e) => {
             setApiKey(e.target.value);
