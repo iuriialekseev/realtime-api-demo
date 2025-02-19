@@ -16,7 +16,7 @@ function SessionStopped({ startSession }) {
     <div className="flex items-center justify-center w-full h-full">
       <Button
         onClick={handleStartSession}
-        className={isActivating ? "bg-gray-400" : "bg-sky-600"}
+        className={isActivating ? "bg-sky-400" : "bg-sky-600"}
         icon={<Play height={16} />}
       >
         {isActivating ? "Starting..." : "Start"}

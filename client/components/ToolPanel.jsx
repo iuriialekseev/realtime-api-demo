@@ -150,7 +150,8 @@ Triggers:
           <option value="ash">Ash</option>
           <option value="ballad">Ballad</option>
           <option value="coral">Coral</option>
-          <option value="echo sage">Echo sage</option>
+          <option value="echo">Echo</option>
+          <option value="sage">Sage</option>
           <option value="shimmer">Shimmer</option>
           <option value="verse">Verse</option>
         </select>
