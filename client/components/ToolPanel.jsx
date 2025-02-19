@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const functionDescription = `
-Call this function when the user passes one of the conditions. Can be called multiple times.
+Call this function when the user mentioned a trigger. Can be called multiple times.
 `;
 
 const sessionUpdate = {
@@ -10,22 +10,22 @@ const sessionUpdate = {
     tools: [
       {
         type: "function",
-        name: "condition_passed",
+        name: "trigger_mentioned",
         description: functionDescription,
         parameters: {
           type: "object",
           strict: true,
           properties: {
-            name: {
+            trigger: {
               type: "string",
-              description: "The name of the condition.",
+              description: "The name of the trigger mentioned.",
             },
             description: {
               type: "string",
-              description: "Explanation of why it is passed.",
+              description: "Explanation of the decision.",
             },
           },
-          required: ["condition", "description"],
+          required: ["trigger", "description"],
         },
       },
     ],
@@ -34,13 +34,13 @@ const sessionUpdate = {
 };
 
 function FunctionCallOutput({ functionCallOutput }) {
-  const { condition, description } = JSON.parse(functionCallOutput.arguments);
+  const { trigger, description } = JSON.parse(functionCallOutput.arguments);
 
   return (
     <div className="flex flex-col gap-2">
       <div className="w-full rounded-md flex flex-col gap-1 border border-gray-200 p-4">
         <p className="text-sm font-bold text-black">
-          Condition: <span className="text-blue-600">{condition}</span>
+          Trigger: <span className="text-blue-600">{trigger}</span>
         </p>
         <p className="text-xs text-gray-700">Description: {description}</p>
       </div>
@@ -79,7 +79,7 @@ export default function ToolPanel({
       mostRecentEvent.response.output.forEach((output) => {
         if (
           output.type === "function_call" &&
-          output.name === "condition_passed"
+          output.name === "trigger_mentioned"
         ) {
           setFunctionCallOutput(output);
           setTimeout(() => {
@@ -126,13 +126,13 @@ export default function ToolPanel({
             localStorage.setItem("systemPrompt", e.target.value);
           }}
           className="w-full p-2 border border-gray-300 rounded-md h-48 mb-4"
-          placeholder={`Character: [description]
-Voice: [description]
-Situation: [description]
+          placeholder={`[Describe the situation]
 
-Conditions:
-- [user mentions x] [assistant reacts as y]
-- [user mentions x] [assistant reacts as y]
+Triggers:
+- [what was mentioned] [how to respond]
+- [what was mentioned] [how to respond]
+- [what was mentioned] [how to respond]
+
 `}
         />
         <label className="block text-sm font-bold text-gray-700 mb-1">
@@ -157,12 +157,12 @@ Conditions:
         </select>
       </div>
       <div className="h-full bg-gray-50 rounded-md p-4">
-        <h2 className="text-lg font-bold">Detected conditions</h2>
+        <h2 className="text-lg font-bold">Detected triggers</h2>
         {isSessionActive ? (
           functionCallOutput ? (
             <FunctionCallOutput functionCallOutput={functionCallOutput} />
           ) : (
-            <p>Awaiting condition detection...</p>
+            <p>Awaiting trigger detection...</p>
           )
         ) : (
           <p>Awaiting...</p>
